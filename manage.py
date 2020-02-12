@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 import os
 import sys
-
+path = '../../shipment_tracking'
+if path not in sys.path:
+    sys.path.append(path)
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "api.settings")
     try:

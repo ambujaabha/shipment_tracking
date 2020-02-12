@@ -1,6 +1,9 @@
 from django.db import models
 from django.conf import settings
 
+
+
+
 class Order(models.Model):
 # Create your models here.
     orderItemId =  models.CharField(max_length = 120, blank= True)
