@@ -24,7 +24,7 @@ class AddressUpdateView(generics.UpdateAPIView):
 
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
-    
+
     def update(self, request, *args, **kwargs):
         # code.interact(local=dict(globals(), **locals()))
         super(AddressUpdateView, self).update(request, args, kwargs)
@@ -32,3 +32,4 @@ class AddressUpdateView(generics.UpdateAPIView):
                     "message": "Successfully updated address having id: " + str(request.data["id"]) + ".",
                     "result": request.data}
         return Response(response)
+
