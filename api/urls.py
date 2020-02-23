@@ -21,5 +21,10 @@ import code
 # code.interact(local=dict(globals(), **locals()))
 urlpatterns = [
     path('api/v1/address/', include('address.urls')),
+    path('api/v1/order/', include('order.urls')),
+    path('api/v1/billing_details/', include('billing_details.urls')),
+    path('api/v1/customer/', include('customer.urls')),
+    path('api/v1/transport/', include('transport.urls')),
+    path('api/v1/shipment/', include('shipment.urls')),
     path('admin/', admin.site.urls),
 ]

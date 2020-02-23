@@ -3,7 +3,7 @@ from django.conf import settings
 
 # Create your models here.
 class Transport(models.Model):
-    transportId = models.CharField(max_length = 120, blank= True)
+    transportId = models.AutoField(primary_key=True, auto_created=True)
     transporterCode =  models.CharField(max_length = 120, blank= True)
     trackAndTrace = models.CharField(max_length = 120, blank= True)
     shippingLabelId = models.CharField(max_length = 120, blank= True)

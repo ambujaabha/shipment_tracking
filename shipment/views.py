@@ -2,13 +2,13 @@ from django.shortcuts import render
 from .models import Shipment
 from rest_framework import generics, status
 from rest_framework.response import Response
-from .serializers import ShipmentSerializer
+from .serializers import ShipmentSerializer, ListShipmentSerializer
 import code
 # Create your views here.
 
 class ShipmentListView(generics.ListAPIView):
     queryset = Shipment.objects.all()
-    serializer_class = ShipmentSerializer
+    serializer_class = ListShipmentSerializer
 
 class ShipmentCreateView(generics.CreateAPIView):
     queryset = Shipment.objects.all()
