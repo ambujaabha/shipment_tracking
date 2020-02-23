@@ -25,6 +25,8 @@ SECRET_KEY = 'm39qxjj!ge#6f_4cu95)95$@z+wm1%@cpl4!l%$#8)67f%#a5t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 ALLOWED_HOSTS = []
 
 
@@ -45,18 +47,37 @@ INSTALLED_APPS = [
     'order',
     'billing_details',
     'transport',
-    'customer'
+    'customer',
+    'oauth2_provider',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'oauth2_provider.middleware.OAuth2TokenMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        'rest_framework.authentication.SessionAuthentication', # To keep the Browsable API
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend' # To keep the Browsable API
+    'oauth2_provider.backends.OAuth2Backend',
+)
 
 ROOT_URLCONF = 'api.urls'
 
