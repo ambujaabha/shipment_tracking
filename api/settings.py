@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'customer',
     'oauth2_provider',
     'corsheaders',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -75,9 +76,12 @@ REST_FRAMEWORK = {
 }
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend' # To keep the Browsable API
+    'django.contrib.auth.backends.ModelBackend', # To keep the Browsable API
     'oauth2_provider.backends.OAuth2Backend',
+    'social_core.backends.auth0.Auth0OAuth2'
 )
+
+# AUTH_USER_MODEL = 'User'
 
 ROOT_URLCONF = 'api.urls'
 
