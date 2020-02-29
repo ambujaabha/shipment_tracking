@@ -55,7 +55,7 @@ urlpatterns = [
     path('authentication/', include('users.urls')),
     path('admin/', admin.site.urls),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-    # path('', include('social_django.urls'))
+    path('', include('social_django.urls'))
     # url(r'^api/hello', ApiEndpoint.as_view()),
 
 ]

@@ -6,12 +6,9 @@ import requests
 
 from .serializers import CreateUserSerializer
 
-# DOMAIN = dev-c-nmilr5.auth0.com
+
 CLIENT_ID = 'T959p70EB2bKnjsDnqgIyJKkScj4iKMsFKCUScc9'
 CLIENT_SECRET = 'pcGirJlNw285vyvEPwdMnkhC0dJZmVmZAg6g9g6gVwYMflDX4WqGXhIz1JKrW6WKhMsKAQbvOubHbatWP3e9HeMAGaxQsJ0c7j8pRG48R81vt8XT7jdvaX9jbNE08J60'
-# CLIENT_ID = '86b40eb4-ecf5-4c5d-9c20-bd47e85684b8'
-# CLIENT_SECRET = 'AU9zaVLOLhua7C3UpJcdmCkWvVZSDn9fh9JGxpXoP6mZYxMRwlBhLQ1sb0VILk7DWsTxM4jKXKZaxWogb0J_NA'
-
 
 
 @api_view(['POST'])
