@@ -41,47 +41,31 @@ class ShipmentListView(generics.ListAPIView):
                     "shippingLabelId": shipment.transport.shippingLabelId,
                     "shippingLabelCode": shipment.transport.shippingLabelCode
                     },
-                "customerDetails": {
-                    "salutationCode": shipment.customer.salutationCode,
-                    "firstName": shipment.customer.firstName,
-                    "surname": shipment.customer.surname,
-                    "streetName": shipment.customer.address.streetName,
-                    "houseNumber": shipment.customer.address.houseNumber,
-                    "houseNumberExtended": shipment.customer.address.houseNumberExtended,
-                    "addressSupplement": shipment.customer.address.addressSupplement,
-                    "extraAddressInformation": shipment.customer.address.extraAddressInformation,
-                    "zipCode": shipment.customer.address.zipCode,
-                    "city": shipment.customer.address.city,
-                    "countryCode": shipment.customer.address.countryCode,
-                    "email": shipment.customer.email,
-                    "company": shipment.customer.company,
-                    "vatNumber": shipment.customer.vatNumber,
-                    "chamberOfCommerceNumber": shipment.customer.chamberOfCommerceNumber,
-                    "orderReference": shipment.customer.orderReference,
-                    "deliveryPhoneNumber": shipment.customer.deliveryPhoneNumber
-                },
-                "billingDetails": {
-                    "salutationCode": shipment.billing_details.salutationCode,
-                    "firstName": shipment.billing_details.firstName,
-                    "surname": shipment.billing_details.surname,
-                    "streetName": shipment.billing_details.address.streetName,
-                    "houseNumber": shipment.billing_details.address.houseNumber,
-                    "houseNumberExtended": shipment.billing_details.address.houseNumberExtended,
-                    "addressSupplement": shipment.billing_details.address.addressSupplement,
-                    "extraAddressInformation": shipment.billing_details.address.extraAddressInformation,
-                    "zipCode": shipment.billing_details.address.zipCode,
-                    "city": shipment.billing_details.address.city,
-                    "countryCode": shipment.billing_details.address.countryCode,
-                    "email": shipment.billing_details.email,
-                    "company": shipment.billing_details.company,
-                    "vatNumber": shipment.billing_details.vatNumber,
-                    "chamberOfCommerceNumber": shipment.billing_details.chamberOfCommerceNumber,
-                    "orderReference": shipment.billing_details.orderReference,
-                    "deliveryPhoneNumber": shipment.billing_details.deliveryPhoneNumber
-                }
+                "customerDetails": self.get_details(shipment, "customer"),
+                "billingDetails": self.get_details(shipment, "billing_details")
             })
-
         return Response({"shipments": shipments})
+
+    def get_details(self, class_obj, attr):
+        return {
+                    "salutationCode": getattr(class_obj, attr).salutationCode,
+                    "firstName": getattr(class_obj, attr).firstName,
+                    "surname": getattr(class_obj, attr).surname,
+                    "streetName": getattr(class_obj, attr).address.streetName,
+                    "houseNumber": getattr(class_obj, attr).address.houseNumber,
+                    "houseNumberExtended": getattr(class_obj, attr).address.houseNumberExtended,
+                    "addressSupplement": getattr(class_obj, attr).address.addressSupplement,
+                    "extraAddressInformation": getattr(class_obj, attr).address.extraAddressInformation,
+                    "zipCode": getattr(class_obj, attr).address.zipCode,
+                    "city": getattr(class_obj, attr).address.city,
+                    "countryCode": getattr(class_obj, attr).address.countryCode,
+                    "email": getattr(class_obj, attr).email,
+                    "company": getattr(class_obj, attr).company,
+                    "vatNumber": getattr(class_obj, attr).vatNumber,
+                    "chamberOfCommerceNumber": getattr(class_obj, attr).chamberOfCommerceNumber,
+                    "orderReference": getattr(class_obj, attr).orderReference,
+                    "deliveryPhoneNumber": getattr(class_obj, attr).deliveryPhoneNumber
+                }
 
 class ShipmentCreateView(generics.CreateAPIView):
     queryset = Shipment.objects.all()
